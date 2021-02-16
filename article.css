@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: all .3s;
 }
 
 html, body {
@@ -23,7 +24,7 @@ html, body {
 
 #container {
   position: absolute;
-  background: rgba(10,10,10,0.8);
+  background: rgba(10,10,10,0.9);
   top: 0;
   left: 0;
   height: 100%;
@@ -31,13 +32,35 @@ html, body {
 }
 
 header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   padding: 20px;
   font-size: 120%;
-  background: rgba(70,30,30,0.9);
   height: auto;
-  transition: all .3s ease;
+  z-index: 10;
+}
+
+header.scrolled {
+  padding: 5px 20px 5px 5px;
+  background: rgba(0,0,0,0.8);
+}
+
+header.scrolled .site-info .site-description {
+  font-size: 0;
+  margin: 0;
+}
+
+header.scrolled .site-info .site-name {
+  margin: 10px 0 0 -5px;
+}
+
+header.scrolled .site-avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 46px;
 }
 
 #title {
@@ -74,7 +97,7 @@ header {
 }
 
 .fullscreen {
-  z-index: 9999;
+  z-index: 5;
   width: 100% !important;
   height: 100% !important;
   top: 0 !important;

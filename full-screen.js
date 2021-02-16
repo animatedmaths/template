@@ -1,4 +1,6 @@
 window.onload = function() {
+  headerScroll()
+  console.log("header scroll active !");
   console.log("full-screen.js active !")
 
   var canvas = document.querySelectorAll(".canva");
