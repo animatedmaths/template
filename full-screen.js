@@ -2,6 +2,12 @@ window.onload = function() {
   console.log("full-screen.js active !")
 
   var canvas = document.querySelectorAll(".canva");
+  var timeout = 500
+
+  document.addEventListener('scroll', function(e) {
+    console.log("scroll happening");
+    timeout = 500
+  })
 
   for (let canva of canvas) {
     let open = false
@@ -13,35 +19,44 @@ window.onload = function() {
           temp.parentNode.removeChild(temp)
           canva.style.position = 'static'
           open = false
+
+          canva.style.width = "auto";
+          document.body.style.overflow = "scroll"
         }, 1000)
         //close
+        timeout = 10
       } else {
         if (open) {
           console.log("already open !")
         } else {
           open = true
-          //open
+          document.body.style.overflow = "hidden"
+          // open
+          var style = canva.currentStyle || window.getComputedStyle(canva);
           let pos = getPosition(this)
+
           this.style.width = toPx(pos.width)
           this.style.height = toPx(pos.height)
-          this.style.top = toPx(parseInt(pos.top) - 20)
+          this.style.top = toPx(parseInt(pos.top) - parseInt(style.marginTop))
           this.style.left = toPx(pos.left)
-          console.log(pos)
-          this.classList.add('fullscreen')
 
-          this.style.position = 'fixed'
+          setTimeout(function() {
+            canva.classList.add('fullscreen')
 
-          console.log("trying to replace element")
-          let temp = document.createElement('div')
-          temp.setAttribute('class', 'canva')
-          temp.setAttribute('id', 'tempcanva')
+            canva.style.position = 'fixed'
 
-          temp.style.width = toPx(pos.width)
-          temp.style.height = toPx(pos.height)
-          temp.style.top = toPx(pos.top)
-          temp.style.left = toPx(pos.left)
+            console.log("trying to replace element")
+            let temp = document.createElement('div')
+            temp.setAttribute('class', 'canva')
+            temp.setAttribute('id', 'tempcanva')
 
-          canva.after(temp)
+            temp.style.width = toPx(pos.width)
+            temp.style.height = toPx(pos.height)
+            temp.style.top = toPx(pos.top)
+            temp.style.left = toPx(pos.left)
+
+            canva.after(temp)
+          }, timeout)
         }
       }
     });
