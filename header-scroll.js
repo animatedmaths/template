@@ -1,10 +1,15 @@
 function headerScroll() {
+  header = document.querySelector('header')
+  title = document.querySelector('#title')
+  hero = document.querySelector('#hero')
   document.addEventListener('scroll', function(e) {
-    header = document.querySelector('header')
     if (window.scrollY == 0) {
       header.classList = ""
     } else {
       header.classList = "scrolled"
     }
+
+    title.style.top = (50 +window.scrollY/30) + "%"
+    //hero.style.height = (100 -window.scrollY/10) + "%"
   })
 }
