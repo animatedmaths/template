@@ -16,6 +16,7 @@ html, body {
 #hero {
   position: relative;
   background-image: var(--background);
+  background-size: cover;
   height: 100%;
   padding: 20px;
   margin-bottom: 80px;
@@ -24,7 +25,7 @@ html, body {
 
 #container {
   position: absolute;
-  background: rgba(10,10,10,0.9);
+  background: rgba(10,10,10,0.5);
   top: 0;
   left: 0;
   height: 100%;
@@ -43,19 +44,19 @@ header {
 
 header.scrolled {
   padding: 5px 20px 5px 5px;
-  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px);
 }
 
-header.scrolled .site-info .site-description {
+header.scrolled .site-left .site-info .site-description {
   font-size: 0;
   margin: 0;
 }
 
-header.scrolled .site-info .site-name {
+header.scrolled .site-left .site-info .site-name {
   margin: 10px 0 0 -5px;
 }
 
-header.scrolled .site-avatar {
+header.scrolled .site-left .site-avatar {
   display: flex;
   flex-direction: row;
   justify-content: center;
