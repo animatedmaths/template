@@ -157,6 +157,13 @@ header {
   justify-content: space-around;
 }
 
+.site-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .site-avatar {
   float: left;
   width: 70px;
@@ -176,8 +183,10 @@ header {
 
 .site-name {
   margin: 0;
+  line-height: normal;
+  white-space: nowrap;
   cursor: pointer;
-  font-family: 'helvetica', sans-serif;
+  font-family: 'Poppins', 'helvetica', sans-serif;
   font-weight: 600;
   font-size: 140%;
   letter-spacing: 1px;
@@ -211,10 +220,6 @@ header.scrolled {
 header.scrolled .site-left .site-info .site-description {
   font-size: 0;
   margin: 0;
-}
-
-header.scrolled .site-left .site-info .site-name {
-  margin: 10px 0 0 -5px;
 }
 
 header.scrolled .site-left .site-avatar {
@@ -261,6 +266,12 @@ header.scrolled .site-left .site-avatar {
   }
 }
 
+@media (max-width: 501px) {
+  nav {
+    display: none;
+  }
+}
+
 /* CANVA STYLES */
 
 .canva {
@@ -269,7 +280,7 @@ header.scrolled .site-left .site-avatar {
   margin: 40px 0;
   padding: 20px;
   min-height: 500px;
-  background: #000;
+  background: #222;
   border-radius: 12px;
   color: #faa;
   z-index: 2;
