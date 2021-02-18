@@ -10,6 +10,5 @@ function headerScroll() {
     }
 
     title.style.top = (50 +window.scrollY/30) + "%"
-    header.style.background = "rgba(0,0,0," + window.scrollY/document.body.offsetHeight + ")"
   })
 }
