@@ -13,16 +13,23 @@ window.onload = function() {
 
   for (let canva of canvas) {
     let open = false
-    canva.addEventListener('click', function(e) {
-      if(this.classList.contains('fullscreen')){
-        this.classList.remove('fullscreen')
+    let icon = document.createElement('img')
+    icon.setAttribute('src', 'expand-outline.svg')
+    canva.appendChild(icon)
+    icon.addEventListener('click', function(e) {
+      if(canva.classList.contains('fullscreen')){
+        canva.classList.remove('fullscreen')
+        icon.setAttribute('src', 'expand-outline.svg')
+
+        header.style.background = "rgba(0,0,0," + window.scrollY/document.body.offsetHeight + ")"
+
         setTimeout(function() {
           let temp = document.querySelector('#tempcanva')
           temp.parentNode.removeChild(temp)
-          canva.style.position = 'static'
+          canva.style.position = 'sticky'
           open = false
 
-          canva.style.width = "auto";
+          canva.style.width = "auto"
           document.body.style.overflow = "scroll"
         }, 1000)
         //close
@@ -31,16 +38,17 @@ window.onload = function() {
         if (open) {
           console.log("already open !")
         } else {
+          icon.setAttribute('src', 'contract-outline.svg')
           open = true
           document.body.style.overflow = "hidden"
           // open
           var style = canva.currentStyle || window.getComputedStyle(canva);
-          let pos = getPosition(this)
+          let pos = getPosition(canva)
 
-          this.style.width = toPx(pos.width)
-          this.style.height = toPx(pos.height)
-          this.style.top = toPx(parseInt(pos.top) - parseInt(style.marginTop))
-          this.style.left = toPx(pos.left)
+          canva.style.width = toPx(pos.width)
+          canva.style.height = toPx(pos.height)
+          canva.style.top = toPx(parseInt(pos.top) - parseInt(style.marginTop))
+          canva.style.left = toPx(pos.left)
 
           setTimeout(function() {
             canva.classList.add('fullscreen')
@@ -52,12 +60,15 @@ window.onload = function() {
             temp.setAttribute('class', 'canva')
             temp.setAttribute('id', 'tempcanva')
 
+            temp.style.zIndex = "1"
             temp.style.width = toPx(pos.width)
             temp.style.height = toPx(pos.height)
             temp.style.top = toPx(pos.top)
             temp.style.left = toPx(pos.left)
 
             canva.after(temp)
+
+            header.style.background = "rgba(0,0,0,0)"
           }, timeout)
         }
       }

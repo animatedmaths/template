@@ -44,7 +44,6 @@ header {
 
 header.scrolled {
   padding: 5px 20px 5px 5px;
-  backdrop-filter: blur(5px);
 }
 
 header.scrolled .site-left .site-info .site-description {
@@ -89,11 +88,16 @@ header.scrolled .site-left .site-avatar {
   left: 0px;
   margin: 40px 0;
   padding: 20px;
+  min-height: 500px;
   background: #050505;
   border-radius: 12px;
   color: #faa;
-  cursor: pointer;
-  position: static;
+  z-index: 2;
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   transition: all 0.6s ease-in-out;
 }
@@ -107,4 +111,13 @@ header.scrolled .site-left .site-avatar {
 
   margin: 0;
   border-radius: 0;
+}
+
+.canva img {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  filter: invert();
+  width: 40px;
+  cursor: pointer;
 }
